@@ -18,10 +18,16 @@ class ArtistsController < ApplicationController
 
   def show
    @artist = Artist.find(params[:id])
+   @albums = @artist.albums
   end
+
 
   protected
     def artist_params
       params.require(:artist).permit(:name, :image_url)
+    end
+
+    def album_params
+      params.require(:album).permit(:name, :image_url, :released_at, :artist)
     end
 end
